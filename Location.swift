@@ -67,7 +67,7 @@ extension Location: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         switch status {
         case .notDetermined:
-            log.debug("Location Authorization status is not determined")
+            print("Location Authorization status is not determined")
         case .authorizedWhenInUse:
             locationManager.startUpdatingLocation()
         case .denied:
