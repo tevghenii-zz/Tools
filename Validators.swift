@@ -94,6 +94,20 @@ class PhoneNumberRule: ValidatorRule {
     
 }
 
+class EmailRule: ValidatorRule {
+    
+    required init(message: String?) {
+        super.init { value -> Bool in
+            let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
+            
+            let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+            return emailTest.evaluate(with: value)
+        }
+        self.message = message
+    }
+    
+}
+
 class Validator {
     
     private let subject: Validation
@@ -161,4 +175,13 @@ class CodeValidator: EmptyValueValidator {
         addRule(MinimumCharactersRule(minimumLength: minLength, message: "\(subject.label) must have minimum \(minLength) characters."))
         addRule(DigitCharactersRule(message: "Please digits only"))
     }
+}
+
+class EmailValidator: EmptyValueValidator {
+    override init(subject: Validation) {
+        super.init(subject: subject)
+        
+        addRule(EmailRule(message: "Email is not valid"))
+    }
+    
 }

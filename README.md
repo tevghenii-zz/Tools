@@ -1,2 +1,2 @@
-# SwiftValidators
-Set of validation classes for swift. Useful for text fields and input view validations
+# Tools
+Set of tool classes written in Swift for dayly iOS development.
